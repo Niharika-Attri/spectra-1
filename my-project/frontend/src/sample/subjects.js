@@ -1,4 +1,4 @@
-const Subjects = [
+export const Subjects = [
     {
         code:"BCSE - 502",
         name:"Data Structure & Algorithms",
@@ -51,4 +51,7 @@ const Subjects = [
     },
 ]
 
-export default Subjects;
+export const Attendance = [
+    80.00,	79.17,	85.11,	90.00,	93.48,	87.50,	86.67,	75.00,	86.67,	81.82,	84.78,	87.50,	86.67
+]
+

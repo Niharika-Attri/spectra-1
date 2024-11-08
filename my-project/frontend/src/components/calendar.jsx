@@ -78,9 +78,8 @@ const CustomCalendar = () => {
     ];
 
     return (
-        <div className="bg-gray-100 flex w-full ">
             <div className="w-full">
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden m-1">
                     <div className="flex items-center justify-between px-6 py-3 bg-gray-700">
                         <button onClick={handlePrevMonth} className="text-white">Previous</button>
                         <h2 className="text-white">{`${monthNames[currentMonth]} ${currentYear}`}</h2>
@@ -124,7 +123,7 @@ const CustomCalendar = () => {
                     )}
                 </div>
             </div>
-        </div>
+        
     );
 };
 
