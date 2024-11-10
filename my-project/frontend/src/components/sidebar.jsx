@@ -10,13 +10,13 @@ function Sidebar(){
     
   </div>
   <div className="flex-col">
-                    <a href="#home" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
+                    <a href="/dashboard" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
                         Home
                     </a>
                     <a href="/attendance" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
                         Attendance
                     </a>
-                    <a href="/classromm" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
+                    <a href="/classroom" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
                         Classroom
                     </a>
                     <a href="/" className="text-lg ml-2 mb-3 block text-gray-300 hover:text-white">
