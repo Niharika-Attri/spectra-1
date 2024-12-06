@@ -1,15 +1,35 @@
 import { useState } from 'react';
 import bgimg from '../assets/cuberender.png'
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Login_Page(){
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-    const handleLogin = (e) =>{
+    const handleLogin = async(e) =>{
         e.preventDefault();
-        navigate('/dashboard')
+
+        try {
+            const response = await axios.post('http://localhost:3000/student/login', {
+                email,
+                password
+            });
+
+            setSuccessMessage(response.data.message);
+            setErrorMessage('');
+            navigate('/dashboard')
+        } catch (error) {
+            setErrorMessage(error.response.data.message || 'An error occurred');
+            setSuccessMessage('');
+            console.log('the error ', error);
+            console.log('message: ',error.response.data.message);
+        }
+
+        
     }
 
     return(<>
@@ -25,7 +45,7 @@ function Login_Page(){
                 <div className='absolute backdrop-blur-3xl items-center justify-center h-[800px] w-[800px] bg-white/3 rounded-full'></div>
 
             </div>
-            <div className='h-4/6 w-80 lg:w-96 bg-white/10 backdrop-blur-md rounded-2xl items-center justify-center text-center flex'>
+            <div className='h-4/6 w-80 lg:w-96 bg-black/10 backdrop-blur-md rounded-2xl items-center justify-center text-center flex'>
                 <form onSubmit={handleLogin} className='w-full' >
                     <h1 className='text-white text-6xl mb-1 font-karla'>Login</h1>
                     <div className='mb-5 relative w-4/5 justify-center mx-auto'>
@@ -52,6 +72,14 @@ function Login_Page(){
                         Signup
                     </Link></h3>
                     
+                    {/* Error Message */}
+                    {errorMessage && (
+                        <p className="text-red-500 mb-4 col-span-2">{errorMessage}</p>
+                    )}
+
+                    {successMessage && (
+                    <p className='text-green-600 col-span-2'>{successMessage}</p>
+                    )}
                     
                     <button type='submit' className='block h-16 w-1/2 mt-2 bg-white rounded-full mx-auto '><div>
                         {/* <h3 className='font-karla text-3xl font-bold bg-gradient-to-r from-fuchsia-500 to-purple-800 bg-clip-text text-transparent'>Login</h3> */}

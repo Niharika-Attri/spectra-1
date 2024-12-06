@@ -1,7 +1,13 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
-
+const studentRouter = require('./router/student.router')
+const cors = require('cors');
+const morgan = require('morgan');
+require('dotenv').config();
 const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(morgan('dev'))
 
 mongoose.connect(process.env.mongodbURI)
     .then(
@@ -12,3 +18,4 @@ mongoose.connect(process.env.mongodbURI)
     )
     .catch((err)=> {console.log(err);})
 
+app.use('/student', studentRouter)
